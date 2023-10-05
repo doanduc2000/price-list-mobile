@@ -1,4 +1,7 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import http from '../../app/http';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import http from "../../config/http";
 
-export const fetchBrand = createAsyncThunk('brand/fetchBrand', async () => await http.get('/brand'));
+export const fetchBrand = createAsyncThunk(
+  "brand/fetchBrand",
+  async () => await http.get("/brand")
+);
