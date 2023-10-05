@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "PriceList",
-    "slug": "PriceList",
+    "slug": "rnpricelist",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rnpricelist.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b815bf0a-c507-404e-b563-e27d85953fc0"
+      }
     }
   }
 }
