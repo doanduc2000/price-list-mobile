@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 const headerStyle = StyleSheet.create({
   container: {
-    paddingHorizontal: 15,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center"
@@ -27,9 +26,6 @@ const headerStyle = StyleSheet.create({
   },
 
   name: { fontSize: 16, fontWeight: "600" },
-  brand: { fontSize: 13 },
-  logoutBtn: {
-    // backgroundColor: "#1d80b6"
-  }
+  brand: { fontSize: 13 }
 });
 export default headerStyle;

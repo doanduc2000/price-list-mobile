@@ -19,6 +19,10 @@ const authSlice = createSlice({
         await AsyncStorage.clear();
       };
       clearToken();
+    },
+    resetLogin: (state) => {
+      state.loaded = false;
+      state.error = "";
     }
   },
   extraReducers: (builder) => {
