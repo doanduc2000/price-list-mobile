@@ -4,7 +4,8 @@ const initialState = {
   loaded: false,
   loading: false,
   error: "",
-  landingList: []
+  landingList: [],
+  pagination: {}
 };
 const landingSlice = createSlice({
   name: "landing",
@@ -18,6 +19,7 @@ const landingSlice = createSlice({
         state.loaded = true;
         state.loading = false;
         state.landingList = action.payload.data?.data;
+        state.pagination = action.payload.data?.pagination;
       });
   }
 });
@@ -25,3 +27,4 @@ export default landingSlice;
 export const loadedLandingSelector = (state) => state.landing.loaded;
 export const loadingLandingSelector = (state) => state.landing.loading;
 export const landingListSelector = (state) => state.landing.landingList;
+export const landingPaginationSelector = (state) => state.landing.pagination;
