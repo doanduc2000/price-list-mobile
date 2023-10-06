@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
-const Search = () => {
+const Search = ({ value, handleSearch }) => {
   return (
     <View style={searchStyle.search}>
       <TextInput
         style={searchStyle.searchInput}
         placeholder="Tìm kiếm theo URL"
+        value={value}
+        onChangeText={handleSearch}
       />
       <Pressable style={searchStyle.searchBtn}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />

@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
-import registerStyle from './registerStyle';
-import HeaderAuth from '../../components/HeaderAuth/HeaderAuth';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBrand } from '../../features/brand/brandApi';
-import { brandListSelector, loadedBrandSelector, loadingBrandSelector } from '../../features/brand/brandSlice';
-import Loading from '../../components/Loading/Loading';
-import NoticeModal from '../../components/NoticeModal/NoticeModal';
+import React, { useEffect, useState } from "react";
+import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import registerStyle from "./registerStyle";
+import HeaderAuth from "../../components/HeaderAuth/HeaderAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBrand } from "../../features/brand/brandApi";
+import {
+  brandListSelector,
+  loadedBrandSelector,
+  loadingBrandSelector
+} from "../../features/brand/brandSlice";
+import Loading from "../../components/Loading/Loading";
+import NoticeModal from "../../components/NoticeModal/NoticeModal";
 import {
   errorRegisterSelector,
   loadedRegisterSelector,
-  loadingRegisterSelector,
-} from '../../features/auth/registerSlice';
-import { registerApi } from '../../features/auth/authApi';
+  loadingRegisterSelector
+} from "../../features/auth/registerSlice";
+import { registerApi } from "../../features/auth/authApi";
 
 const Register = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -25,20 +29,26 @@ const Register = ({ navigation }) => {
   const loadingRegister = useSelector(loadingRegisterSelector);
   const errorRegister = useSelector(errorRegisterSelector);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [registerInfo, setRegisterInfo] = useState({ name: '', email: '', brand: '', password: '', retypePasword: '' });
+  const [registerInfo, setRegisterInfo] = useState({
+    name: "",
+    email: "",
+    brand: "",
+    password: "",
+    retypePasword: ""
+  });
   const handleRegister = () => {
     if (
-      registerInfo.name === '' ||
-      registerInfo.email === '' ||
-      registerInfo.brand === '' ||
-      registerInfo.password === '' ||
-      registerInfo.retypePasword === ''
+      registerInfo.name === "" ||
+      registerInfo.email === "" ||
+      registerInfo.brand === "" ||
+      registerInfo.password === "" ||
+      registerInfo.retypePasword === ""
     ) {
-      Alert.alert('Thông báo', 'Vui lòng nhập đầy đủ thông tin');
+      Alert.alert("Thông báo", "Vui lòng nhập đầy đủ thông tin");
       return;
     }
     if (registerInfo.password !== registerInfo.retypePasword) {
-      Alert.alert('Thông báo', 'Nhập lại mật khẩu không đúng');
+      Alert.alert("Thông báo", "Nhập lại mật khẩu không đúng");
       return;
     }
 
@@ -48,19 +58,19 @@ const Register = ({ navigation }) => {
 
   const handleInputChange = (key, value) => {
     switch (key) {
-      case 'name':
+      case "name":
         setRegisterInfo({ ...registerInfo, name: value });
         break;
-      case 'email':
+      case "email":
         setRegisterInfo({ ...registerInfo, email: value });
         break;
-      case 'brand':
+      case "brand":
         setRegisterInfo({ ...registerInfo, brand: value });
         break;
-      case 'password':
+      case "password":
         setRegisterInfo({ ...registerInfo, password: value });
         break;
-      case 'retypePasword':
+      case "retypePasword":
         setRegisterInfo({ ...registerInfo, retypePasword: value });
         break;
       default:
@@ -73,19 +83,25 @@ const Register = ({ navigation }) => {
   return (
     <View style={registerStyle.bgAuth}>
       <HeaderAuth />
-      {(loadingBrand || loadingRegister) && <Loading />}
+      <Loading visible={loadingBrand || loadingRegister} />
       {isSuccess && loadedRegister && (
         <NoticeModal
-          content={'Đăng ký thành công'}
+          content={"Đăng ký thành công"}
           isNotice={false}
           action={() => {
-            navigation.navigate('Login');
-            setRegisterInfo({ name: '', email: '', brand: '', password: '', retypePasword: '' });
+            navigation.navigate("Login");
+            setRegisterInfo({
+              name: "",
+              email: "",
+              brand: "",
+              password: "",
+              retypePasword: ""
+            });
             setIsSuccess(false);
           }}
         />
       )}
-      {isSuccess && errorRegister !== '' && (
+      {isSuccess && errorRegister !== "" && (
         <NoticeModal
           content={errorRegister}
           isNotice={false}
@@ -102,7 +118,7 @@ const Register = ({ navigation }) => {
             <TextInput
               style={registerStyle.input}
               value={registerInfo.name}
-              onChangeText={(text) => handleInputChange('name', text)}
+              onChangeText={(text) => handleInputChange("name", text)}
               placeholder="Nguyễn Văn A"
             />
           </View>
@@ -112,21 +128,33 @@ const Register = ({ navigation }) => {
               style={registerStyle.input}
               placeholder="example@scigroup.com.vn"
               value={registerInfo.email}
-              onChangeText={(text) => handleInputChange('email', text)}
+              onChangeText={(text) => handleInputChange("email", text)}
             />
           </View>
           <View style={registerStyle.inputGroup}>
             <Text style={registerStyle.inputTitle}>Thương hiệu</Text>
-            <View style={[registerStyle.input, { justifyContent: 'center' }]}>
+            <View style={[registerStyle.input, { justifyContent: "center" }]}>
               <Picker
                 style={{ height: 25, fontSize: 14 }}
                 selectedValue={registerInfo.brand}
-                onValueChange={(itemValue) => handleInputChange('brand', itemValue)}
+                onValueChange={(itemValue) =>
+                  handleInputChange("brand", itemValue)
+                }
               >
-                <Picker.Item style={{ fontSize: 14 }} enabled={false} label={'Chọn thương hiệu'} value={''} />
+                <Picker.Item
+                  style={{ fontSize: 14 }}
+                  enabled={false}
+                  label={"Chọn thương hiệu"}
+                  value={""}
+                />
                 {loadedBrand &&
                   brand.map((item) => (
-                    <Picker.Item key={item.id} style={{ fontSize: 14 }} label={item.name} value={item.id} />
+                    <Picker.Item
+                      key={item.id}
+                      style={{ fontSize: 14 }}
+                      label={item.name}
+                      value={item.id}
+                    />
                   ))}
               </Picker>
             </View>
@@ -138,7 +166,7 @@ const Register = ({ navigation }) => {
               style={registerStyle.input}
               placeholder="Nhập mật khẩu"
               value={registerInfo.password}
-              onChangeText={(text) => handleInputChange('password', text)}
+              onChangeText={(text) => handleInputChange("password", text)}
             />
           </View>
           <View style={registerStyle.inputGroup}>
@@ -148,11 +176,15 @@ const Register = ({ navigation }) => {
               style={registerStyle.input}
               placeholder="Nhập lại mật khẩu"
               value={registerInfo.retypePasword}
-              onChangeText={(text) => handleInputChange('retypePasword', text)}
+              onChangeText={(text) => handleInputChange("retypePasword", text)}
             />
           </View>
 
-          <TouchableOpacity activeOpacity={0.8} onPress={handleRegister} style={registerStyle.registerBtn}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={handleRegister}
+            style={registerStyle.registerBtn}
+          >
             <Text style={registerStyle.textBtn}>Đăng ký ngay</Text>
           </TouchableOpacity>
         </View>
@@ -160,7 +192,7 @@ const Register = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => {
-            navigation.navigate('Login');
+            navigation.navigate("Login");
           }}
           style={registerStyle.linkBtn}
         >

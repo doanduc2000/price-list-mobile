@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
   return (
     <View style={loginStyle.bgAuth}>
       <HeaderAuth />
-      {loadingLogin && <Loading />}
+      <Loading visible={loadingLogin} />
 
       <NoticeModal
         visible={isSuccess && errorLogin !== ""}

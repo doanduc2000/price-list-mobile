@@ -1,5 +1,12 @@
-import React, { useEffect } from "react";
-import { Pressable, SafeAreaView, Text, TextInput, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Pressable,
+  SafeAreaView,
+  Text,
+  TextInput,
+  View
+} from "react-native";
 import homeStyle from "./homeStyle";
 import Header from "../../components/Header/Header";
 import {
@@ -11,7 +18,8 @@ import { fetchLanding } from "../../features/landing/landingApi";
 import {
   landingListSelector,
   landingPaginationSelector,
-  loadedLandingSelector
+  loadedLandingSelector,
+  loadingLandingSelector
 } from "../../features/landing/landingSlice";
 import LandingItem from "../../components/LandingItem/LandingItem";
 import Search from "../../components/Search/Search";
@@ -22,10 +30,17 @@ const Home = () => {
   const loadedUser = useSelector(loadedAuthSelector);
   const landingList = useSelector(landingListSelector);
   const loadedLanding = useSelector(loadedLandingSelector);
+  const loadingLanding = useSelector(loadingLandingSelector);
   const pagination = useSelector(landingPaginationSelector);
+
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (text) => {
+    setSearch(text);
+  };
   useEffect(() => {
-    dispatch(fetchLanding(currentUser.brand_id));
-  }, [dispatch]);
+    dispatch(fetchLanding({ brandId: currentUser.brand_id, link: search }));
+  }, [dispatch, search, currentUser]);
   return (
     <SafeAreaView style={homeStyle.bg}>
       <Header />
@@ -37,10 +52,15 @@ const Home = () => {
           <Text style={homeStyle.desc}>{pagination.total} Landing page</Text>
         )}
       </View>
-      <Search />
+      <Search value={search} handleSearch={handleSearch} />
       <View style={homeStyle.landingList}>
-        {loadedLanding &&
-          landingList.map((item) => <LandingItem key={item.id} {...item} />)}
+        {loadingLanding ? (
+          <ActivityIndicator size="small" color="#1d80b6" />
+        ) : loadedLanding && landingList.length === 0 ? (
+          <Text style={{ textAlign: "center" }}>Không có dữ liệu</Text>
+        ) : (
+          landingList.map((item) => <LandingItem key={item.id} {...item} />)
+        )}
       </View>
     </SafeAreaView>
   );
