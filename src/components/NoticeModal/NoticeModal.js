@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const NoticeModal = ({ action, close, isNotice, content, visible }) => {
   return (
-    <Modal transparent={true} visible={visible}>
+    <Modal animationType="fade" transparent={true} visible={visible}>
       <View style={noticeModalStyle.bg}>
         <View style={noticeModalStyle.box}>
           <LinearGradient
@@ -21,7 +21,7 @@ const NoticeModal = ({ action, close, isNotice, content, visible }) => {
             <TouchableOpacity
               activeOpacity={0.8}
               style={noticeModalStyle.btn}
-              onPress={isNotice ? close : action}
+              onPress={!isNotice ? close : action}
             >
               <Text style={noticeModalStyle.textBtn}>Đồng ý</Text>
             </TouchableOpacity>
