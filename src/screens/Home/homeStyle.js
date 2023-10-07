@@ -9,7 +9,10 @@ const homeStyle = StyleSheet.create({
   },
   header: {
     marginVertical: 30,
-    gap: 5
+    gap: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   title: {
     fontSize: 24

@@ -4,7 +4,6 @@ import {
   Pressable,
   SafeAreaView,
   Text,
-  TextInput,
   View
 } from "react-native";
 import homeStyle from "./homeStyle";
@@ -23,6 +22,8 @@ import {
 } from "../../features/landing/landingSlice";
 import LandingItem from "../../components/LandingItem/LandingItem";
 import Search from "../../components/Search/Search";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -45,12 +46,19 @@ const Home = () => {
     <SafeAreaView style={homeStyle.bg}>
       <Header />
       <View style={homeStyle.header}>
-        <Text style={homeStyle.title}>
-          Thương hiệu {loadedUser && currentUser.brand.name}
-        </Text>
-        {loadedLanding && (
-          <Text style={homeStyle.desc}>{pagination.total} Landing page</Text>
-        )}
+        <View>
+          <Text style={homeStyle.title}>
+            Thương hiệu {loadedUser && currentUser.brand.name}
+          </Text>
+          {loadedLanding && (
+            <Text style={homeStyle.desc}>{pagination.total} Landing page</Text>
+          )}
+        </View>
+        <Pressable
+          style={{ backgroundColor: "#1d80b6", padding: 10, borderRadius: 6 }}
+        >
+          <FontAwesomeIcon color="#fff" icon={faPlus} />
+        </Pressable>
       </View>
       <Search value={search} handleSearch={handleSearch} />
       <View style={homeStyle.landingList}>
