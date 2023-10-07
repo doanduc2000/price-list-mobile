@@ -1,16 +1,16 @@
-import React from "react";
-import { Text, View, TouchableOpacity, Modal } from "react-native";
+import React from 'react';
+import { Text, View, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 
-import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const NoticeModal = ({ action, close, isNotice, content, visible }) => {
   return (
-    <Modal animationType="fade" transparent={true} visible={visible}>
+    <Modal animationType='fade' transparent={true} visible={visible}>
       <View style={noticeModalStyle.bg}>
         <View style={noticeModalStyle.box}>
           <LinearGradient
             style={noticeModalStyle.header}
-            colors={["#3481aa", "#489bc7"]}
+            colors={['#3481aa', '#489bc7']}
             start={{ x: 0, y: 1 }}
             end={{ x: 0.7, y: 0.1 }}
           >
@@ -18,19 +18,11 @@ const NoticeModal = ({ action, close, isNotice, content, visible }) => {
           </LinearGradient>
           <Text style={noticeModalStyle.content}>{content}</Text>
           <View style={noticeModalStyle.control}>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={noticeModalStyle.btn}
-              onPress={!isNotice ? close : action}
-            >
+            <TouchableOpacity activeOpacity={0.8} style={noticeModalStyle.btn} onPress={!isNotice ? close : action}>
               <Text style={noticeModalStyle.textBtn}>Đồng ý</Text>
             </TouchableOpacity>
             {isNotice && (
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={noticeModalStyle.btn}
-                onPress={close}
-              >
+              <TouchableOpacity activeOpacity={0.8} style={noticeModalStyle.btn} onPress={close}>
                 <Text style={noticeModalStyle.textBtn}>Hủy bỏ</Text>
               </TouchableOpacity>
             )}
@@ -42,47 +34,47 @@ const NoticeModal = ({ action, close, isNotice, content, visible }) => {
 };
 const noticeModalStyle = StyleSheet.create({
   bg: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    justifyContent: "center",
-    alignItems: "center"
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   box: {
-    backgroundColor: "#fff",
-    width: "80%",
+    backgroundColor: '#fff',
+    width: '80%',
     borderRadius: 8,
-    overflow: "hidden",
-    paddingBottom: 20
+    overflow: 'hidden',
+    paddingBottom: 20,
   },
   header: {
-    padding: 10
+    padding: 10,
   },
   title: {
-    textAlign: "center",
-    color: "#fff",
-    fontSize: 21
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 21,
   },
   content: {
-    textAlign: "center",
+    textAlign: 'center',
     paddingVertical: 20,
     paddingHorizontal: 10,
-    fontSize: 18
+    fontSize: 18,
   },
   control: {
-    flexDirection: "row",
-    justifyContent: "center",
-    gap: 20
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
   },
   btn: {
-    backgroundColor: "#3481aa",
+    backgroundColor: '#3481aa',
     paddingHorizontal: 20,
     paddingVertical: 6,
-    borderRadius: 12
+    borderRadius: 12,
   },
   textBtn: {
-    color: "#fff",
-    fontSize: 16
-  }
+    color: '#fff',
+    fontSize: 16,
+  },
 });
 export default NoticeModal;

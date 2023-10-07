@@ -1,14 +1,14 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
 const Search = ({ value, handleSearch }) => {
   return (
     <View style={searchStyle.search}>
       <TextInput
         style={searchStyle.searchInput}
-        placeholder="Tìm kiếm theo URL"
+        placeholder='Tìm kiếm theo URL'
         value={value}
         onChangeText={handleSearch}
       />
@@ -20,30 +20,30 @@ const Search = ({ value, handleSearch }) => {
 };
 const searchStyle = StyleSheet.create({
   search: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "#fff",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#fff',
     borderRadius: 12,
     paddingLeft: 15,
     paddingVertical: 5,
     paddingRight: 10,
     gap: 10,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
-      height: 1
+      height: 1,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-    elevation: 3
+    elevation: 3,
   },
   searchInput: {
-    width: "90%"
+    width: '90%',
   },
   searchBtn: {
     maxWidth: 20,
-    minWidth: 20
-  }
+    minWidth: 20,
+  },
 });
 export default Search;

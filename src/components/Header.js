@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Pressable, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import authSlice, {
-  currentUserSelector,
-  loadedAuthSelector
-} from "../features/auth/authSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import NoticeModal from "./NoticeModal";
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import authSlice, { currentUserSelector, loadedAuthSelector } from '../features/auth/authSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import NoticeModal from './NoticeModal';
 const Header = () => {
   const dispatch = useDispatch();
   const [isLogout, setIsLogout] = useState(false);
@@ -20,9 +17,7 @@ const Header = () => {
       {loadedUser && (
         <View style={headerStyle.user}>
           <View style={headerStyle.avatarBox}>
-            <Text style={headerStyle.avatar}>
-              {currentUser.name.split("")[0]}
-            </Text>
+            <Text style={headerStyle.avatar}>{currentUser.name.split('')[0]}</Text>
           </View>
           <View>
             <Text style={headerStyle.name}>{currentUser.name}</Text>
@@ -36,16 +31,12 @@ const Header = () => {
           setIsLogout(true);
         }}
       >
-        <FontAwesomeIcon
-          icon={faArrowRightFromBracket}
-          size={20}
-          color="#aaa"
-        />
+        <FontAwesomeIcon icon={faArrowRightFromBracket} size={20} color='#aaa' />
       </Pressable>
       <NoticeModal
         isNotice={true}
         visible={isLogout}
-        content={"Bạn có muốn đăng xuất không ?"}
+        content={'Bạn có muốn đăng xuất không ?'}
         action={() => {
           dispatch(authSlice.actions.logout());
           setIsLogout(false);
@@ -60,30 +51,30 @@ const Header = () => {
 
 const headerStyle = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   user: {
-    flexDirection: "row",
+    flexDirection: 'row',
     gap: 10,
-    alignItems: "center"
+    alignItems: 'center',
   },
   avatarBox: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "orange",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'orange',
     width: 45,
     height: 45,
-    borderRadius: 4
+    borderRadius: 4,
   },
   avatar: {
     fontSize: 24,
-    fontWeight: "600",
-    color: "#fff"
+    fontWeight: '600',
+    color: '#fff',
   },
 
-  name: { fontSize: 16, fontWeight: "600" },
-  brand: { fontSize: 13 }
+  name: { fontSize: 16, fontWeight: '600' },
+  brand: { fontSize: 13 },
 });
 export default Header;
