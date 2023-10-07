@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import loginStyle from "./loginStyle";
-import HeaderAuth from "../../components/HeaderAuth/HeaderAuth";
+import HeaderAuth from "../../components/HeaderAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { loginApi } from "../../features/auth/authApi";
 import authSlice, {
@@ -9,8 +9,8 @@ import authSlice, {
   loadedAuthSelector,
   loadingAuthSelector
 } from "../../features/auth/authSlice";
-import NoticeModal from "../../components/NoticeModal/NoticeModal";
-import Loading from "../../components/Loading/Loading";
+import NoticeModal from "../../components/NoticeModal";
+import Loading from "../../components/Loading";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();

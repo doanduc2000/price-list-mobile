@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import registerStyle from "./registerStyle";
-import HeaderAuth from "../../components/HeaderAuth/HeaderAuth";
+import HeaderAuth from "../../components/HeaderAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBrand } from "../../features/brand/brandApi";
 import {
@@ -10,8 +10,8 @@ import {
   loadedBrandSelector,
   loadingBrandSelector
 } from "../../features/brand/brandSlice";
-import Loading from "../../components/Loading/Loading";
-import NoticeModal from "../../components/NoticeModal/NoticeModal";
+import Loading from "../../components/Loading";
+import NoticeModal from "../../components/NoticeModal";
 import {
   errorRegisterSelector,
   loadedRegisterSelector,

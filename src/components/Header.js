@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import headerStyle from "./headerStyle";
-import { Pressable, Text, TouchableOpacity, View } from "react-native";
+
+import { Pressable, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import authSlice, {
   currentUserSelector,
   loadedAuthSelector
-} from "../../features/auth/authSlice";
+} from "../features/auth/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import NoticeModal from "../NoticeModal/NoticeModal";
+import NoticeModal from "./NoticeModal";
 const Header = () => {
   const dispatch = useDispatch();
   const [isLogout, setIsLogout] = useState(false);
@@ -58,4 +58,32 @@ const Header = () => {
   );
 };
 
+const headerStyle = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  user: {
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center"
+  },
+  avatarBox: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "orange",
+    width: 45,
+    height: 45,
+    borderRadius: 4
+  },
+  avatar: {
+    fontSize: 24,
+    fontWeight: "600",
+    color: "#fff"
+  },
+
+  name: { fontSize: 16, fontWeight: "600" },
+  brand: { fontSize: 13 }
+});
 export default Header;

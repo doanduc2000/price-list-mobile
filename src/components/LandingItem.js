@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import landingItemStyle from "./LandingItemStyle";
-import DetailModal from "../DetailModal/DetailModal";
+
+import DetailModal from "./DetailModal";
 
 const LandingItem = (props) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -55,5 +55,18 @@ const LandingItem = (props) => {
     </View>
   );
 };
+const landingItemStyle = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 20
+  },
+  status: {
+    width: 7,
+    height: 7,
 
+    borderRadius: 20
+  }
+});
 export default LandingItem;

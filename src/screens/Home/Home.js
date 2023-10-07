@@ -7,7 +7,7 @@ import {
   View
 } from "react-native";
 import homeStyle from "./homeStyle";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import {
   currentUserSelector,
   loadedAuthSelector
@@ -20,8 +20,8 @@ import {
   loadedLandingSelector,
   loadingLandingSelector
 } from "../../features/landing/landingSlice";
-import LandingItem from "../../components/LandingItem/LandingItem";
-import Search from "../../components/Search/Search";
+import LandingItem from "../../components/LandingItem";
+import Search from "../../components/Search";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
