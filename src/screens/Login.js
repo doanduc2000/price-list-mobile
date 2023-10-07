@@ -3,14 +3,14 @@ import { Text, View, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import HeaderAuth from '../components/HeaderAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginApi } from '../features/auth/authApi';
-import { errorAuthSelector, loadedAuthSelector, loadingAuthSelector } from '../features/auth/authSlice';
+import { errorAuthSelector, loadingAuthSelector } from '../features/auth/authSlice';
 import NoticeModal from '../components/NoticeModal';
 import Loading from '../components/Loading';
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
   const [login, setLogin] = useState({ email: '', password: '' });
-  const loadedLogin = useSelector(loadedAuthSelector);
+
   const loadingLogin = useSelector(loadingAuthSelector);
   const errorLogin = useSelector(errorAuthSelector);
   const [isSuccess, setIsSuccess] = useState(false);

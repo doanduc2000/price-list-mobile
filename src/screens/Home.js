@@ -15,6 +15,7 @@ import LandingItem from '../components/LandingItem';
 import Search from '../components/Search';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import AddLanding from '../components/AddLanding';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Home = () => {
   const loadedLanding = useSelector(loadedLandingSelector);
   const loadingLanding = useSelector(loadingLandingSelector);
   const pagination = useSelector(landingPaginationSelector);
-
+  const [isAddLanding, setIsAddLanding] = useState(false);
   const [search, setSearch] = useState('');
 
   const handleSearch = (text) => {
@@ -41,7 +42,10 @@ const Home = () => {
           <Text style={homeStyle.title}>Thương hiệu {loadedUser && currentUser.brand.name}</Text>
           {loadedLanding && <Text style={homeStyle.desc}>{pagination.total} Landing page</Text>}
         </View>
-        <Pressable style={{ backgroundColor: '#1d80b6', padding: 10, borderRadius: 6 }}>
+        <Pressable
+          style={{ backgroundColor: '#1d80b6', padding: 10, borderRadius: 6 }}
+          onPress={() => setIsAddLanding(true)}
+        >
           <FontAwesomeIcon color='#fff' icon={faPlus} />
         </Pressable>
       </View>
@@ -55,6 +59,7 @@ const Home = () => {
           landingList.map((item) => <LandingItem key={item.id} {...item} />)
         )}
       </View>
+      <AddLanding close={() => setIsAddLanding(false)} visible={isAddLanding} brandId={currentUser.brand_id} />
     </SafeAreaView>
   );
 };
