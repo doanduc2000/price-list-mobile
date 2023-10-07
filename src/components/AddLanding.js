@@ -1,12 +1,11 @@
 import { Picker } from '@react-native-picker/picker';
 import React, { useEffect, useState } from 'react';
-import { Alert, Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesListSelector, loadedCategorySelector } from '../features/category/categorySlice';
 import { fetchCategory } from '../features/category/categoryApi';
 import landingSlice, { landingErrorSelector } from '../features/landing/landingSlice';
 import { createLanding } from '../features/landing/landingApi';
-import NoticeModal from './NoticeModal';
 
 const AddLanding = ({ visible, brandId, close }) => {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ const AddLanding = ({ visible, brandId, close }) => {
       setErrorClient('Vui lòng nhập đủ thông tin');
       return;
     }
-    setErrorClient('');
+    setErrorClient('Thêm mới thành công');
     dispatch(createLanding(landing));
   };
   useEffect(() => {
