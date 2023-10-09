@@ -32,12 +32,15 @@ const AddLanding = ({ visible, brandId, close }) => {
       setErrorClient('Vui lòng nhập đủ thông tin');
       return;
     }
-    setErrorClient('Thêm mới thành công');
     dispatch(createLanding(landing));
   };
   useEffect(() => {
     dispatch(fetchCategory(brandId));
-  }, [dispatch]);
+    if (errorData === '' && errorClient === '') {
+      close();
+      setLanding({ url: '', category: '', status: true, brandId: brandId });
+    }
+  }, [dispatch, errorData, errorClient, brandId]);
   return (
     <Modal animationType='fade' transparent={true} visible={visible}>
       <View style={style.bg}>

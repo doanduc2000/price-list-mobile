@@ -30,7 +30,6 @@ const landingSlice = createSlice({
         state.loading = true;
       })
       .addCase(createLanding.fulfilled, (state, action) => {
-        console.log('action: ', action);
         state.loading = false;
         if (action.payload.code === 'ERR_NETWORK') {
           state.loaded = false;

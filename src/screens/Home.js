@@ -84,6 +84,8 @@ const homeStyle = StyleSheet.create({
     fontSize: 14,
   },
   landingList: {
+    maxHeight: '70%',
+    overflow: 'scroll',
     marginTop: 15,
     backgroundColor: '#fff',
     borderRadius: 24,
