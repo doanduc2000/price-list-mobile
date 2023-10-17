@@ -6,7 +6,7 @@ import DetailModal from './DetailModal';
 const LandingItem = (props) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   return (
-    <View>
+    <View style={{ marginBottom: 15 }}>
       <Pressable
         onPress={() => {
           setIsOpenModal(!isOpenModal);

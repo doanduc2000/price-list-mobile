@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import Header from '../components/Header';
 import { currentUserSelector, loadedAuthSelector } from '../features/auth/authSlice';
@@ -32,7 +32,7 @@ const Home = () => {
     setSearch(text);
   };
   useEffect(() => {
-    dispatch(fetchLanding({ brandId: currentUser.brand_id, link: search }));
+    loadedUser && dispatch(fetchLanding({ brandId: currentUser.brand_id, link: search }));
   }, [dispatch, search, currentUser]);
   return (
     <SafeAreaView style={homeStyle.bg}>
@@ -50,16 +50,22 @@ const Home = () => {
         </Pressable>
       </View>
       <Search value={search} handleSearch={handleSearch} />
-      <View style={homeStyle.landingList}>
-        {loadingLanding ? (
-          <ActivityIndicator size='small' color='#1d80b6' />
-        ) : loadedLanding && landingList.length === 0 ? (
-          <Text style={{ textAlign: 'center' }}>Không có dữ liệu</Text>
-        ) : (
-          landingList.map((item) => <LandingItem key={item.id} {...item} />)
-        )}
-      </View>
-      <AddLanding close={() => setIsAddLanding(false)} visible={isAddLanding} brandId={currentUser.brand_id} />
+      <ScrollView style={homeStyle.landingList}>
+        <View style={{ marginTop: 20, marginBottom: 5 }}>
+          {loadingLanding ? (
+            <ActivityIndicator size='small' color='#1d80b6' />
+          ) : loadedLanding && landingList.length === 0 ? (
+            <Text style={{ textAlign: 'center' }}>Không có dữ liệu</Text>
+          ) : (
+            landingList.map((item) => <LandingItem key={item.id} {...item} />)
+          )}
+        </View>
+      </ScrollView>
+      <AddLanding
+        close={() => setIsAddLanding(false)}
+        visible={isAddLanding}
+        brandId={loadedUser && currentUser.brand_id}
+      />
     </SafeAreaView>
   );
 };
@@ -84,14 +90,13 @@ const homeStyle = StyleSheet.create({
     fontSize: 14,
   },
   landingList: {
-    maxHeight: '70%',
-    overflow: 'scroll',
+    gap: 15,
+    height: '70%',
     marginTop: 15,
     backgroundColor: '#fff',
     borderRadius: 24,
     paddingHorizontal: 15,
-    paddingVertical: 20,
-    gap: 15,
+
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

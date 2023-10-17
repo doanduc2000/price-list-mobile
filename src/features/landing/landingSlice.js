@@ -21,8 +21,12 @@ const landingSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchLanding.fulfilled, (state, action) => {
-        state.loaded = true;
         state.loading = false;
+        if (action.payload.response?.status === 500) {
+          state.loaded = false;
+          return;
+        }
+        state.loaded = true;
         state.landingList = action.payload.data?.data;
         state.pagination = action.payload.data?.pagination;
       })
