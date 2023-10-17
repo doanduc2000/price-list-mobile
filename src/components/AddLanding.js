@@ -33,11 +33,11 @@ const AddLanding = ({ visible, brandId, close }) => {
       return;
     }
     dispatch(createLanding(landing));
+    close();
   };
   useEffect(() => {
     dispatch(fetchCategory(brandId));
     if (errorData === '' && errorClient === '') {
-      close();
       setLanding({ url: '', category: '', status: true, brandId: brandId });
     }
   }, [dispatch, errorData, errorClient, brandId]);
