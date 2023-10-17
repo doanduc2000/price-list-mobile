@@ -32,3 +32,13 @@ export const createLanding = createAsyncThunk('landing/createLanding', async (bo
     return e;
   }
 });
+export const deleteLanding = createAsyncThunk('landing/deleteLanding', async (id) => {
+  try {
+    const token = await AsyncStorage.getItem('token');
+    return await http.delete(`/landing/${id}`, {
+      headers: { Authorization: token },
+    });
+  } catch (e) {
+    return e;
+  }
+});
